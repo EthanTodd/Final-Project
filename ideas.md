@@ -12,5 +12,8 @@
     * Twitter
     * Newspaper
     * Weather
+    * Current movies
+    * Current lotto winners
+    * sports scores
     * Google geolocation
     *

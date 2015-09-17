@@ -1,0 +1,13 @@
+.header {
+	background-color: lightblue;
+}
+
+.navigation {
+	border-top: solid 1px lightgray;
+	border-bottom: solid 1px lightgray;
+}
+
+.media {
+	/*border-top: solid 1px lightgray;*/
+	border-bottom: solid 1px lightgray;
+}
