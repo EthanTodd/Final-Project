@@ -1,0 +1,20 @@
+{
+	"users": [
+		{
+			"id": 1,
+			"first_name": "Ethan",
+			"last_name": "Schiavi",
+			"user_name": "ESchiavi",
+			"password_digest": "password",
+			"weather_info": true
+		},
+		{
+			"id": 2,
+			"first_name": "Alex",
+			"last_name": "Schiavi",
+			"user_name": "ASchiavi",
+			"password_digest": "password",
+			"weather_info": true
+		}
+	]
+}
