@@ -1,0 +1,26 @@
+.total-content {
+	margin: 10px;
+	/*max-width: 95%;*/
+}
+.fb-login-button {
+	text-align: left;
+}
+.header-content {
+	background-color: white;
+	/*max-width: 95%;*/
+	color: black;
+}
+.box {
+	border-bottom: 1px solid lightgray;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.weather-container {
+	/*background: linear-gradient(to right, black, white);*/
+}
+a {
+	color: black;
+}
+.footer {
+	border-top: 1px solid lightgray;
+}

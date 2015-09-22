@@ -5,30 +5,219 @@
 	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
 	<script src="script.js"></script>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+	<link rel="stylesheet" href="style.css">
 
 </head>
 <body>
 
+
+<script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      // document.getElementById('status').innerHTML = 'Please log ' +
+      //   'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      // document.getElementById('status').innerHTML = 'Please log ' +
+      //   'into Facebook.';
+    }
+  }
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1643012232607553',
+    cookie     : true,
+    xfbml      : true,
+    version    : 'v2.2'
+  });
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+	(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=1643012232607553";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
+	// FB.api(
+ //    "...?fields={fieldname_of_type_ProfilePictureSource}",
+ //    function (response) {
+ //      if (response && !response.error) {
+ //        console.log(response);
+ //      }
+ //    }
+	// );
+
+  function testAPI() {
+    // console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      // document.getElementById('status').innerHTML =
+      //   'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+</script>
+
+
+
+<div class="total-content">
+	<header>
+		<div class="header-content">
+			<div class="pure-g">
+				<div class="pure-u-2-5">
+					<img src="http://test.ginstr.com/wp-content/uploads/app_icon_water_cooler.png" height="100">
+				<!-- <div><p>water cooler</p></div> -->
+				</div>
+				<div class="pure-u-2-5">
+					<h1></h1>
+				</div>
+				<div class="pure-u-1-5" id="statu">
+					<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<nav>
+		<div class="nav-content">
+			<div class="pure-g">
+				<div class="pure-u-1 weather-container">
+				</div>
+			</div>
+		</div>
+	</nav>
+
 	<div class="page-content">
 		<div class="pure-g">
-			<div class="pure-u-1 ">
-				<h1>test</h1>
+			<div class="pure-u-1">
+				<div class="box" id="weather-container">
+					<!-- WEATHER TEMPLATE HERE -->
+				</div>
+				<div class="box" id="news-container">
+					<!-- GUARDIAN TEMPLATE HERE -->
+				</div>
+				<div class="box" id="recipe-container">
+					<!-- RECIPE TEMPLATE HERE -->
+				</div>
+				<div class="box" id="powerball-container">
+					<!-- POWERBALL TEMPLATE HERE -->
+				</div>
+				<div class="box" id="megamillions-container">
+					<!-- MEGAMILLIONS TEMPLATE HERE -->
+				</div>
+				<div class="box" id="insta-container">
+					<!-- INSTAGRAM TEMPLATE HERE -->
+				</div>
 			</div>
 		</div>
 	</div>
+
+	<footer class="pure-g">
+		<div class="pure-u-1 footer">
+			<div
+			  class="fb-like"
+			  data-share="true"
+			  data-width="450"
+			  data-show-faces="true">
+			</div>
+		</div>
+	</div>
+</div>
 
 	<!-- WEATHER TEMPLATE -->
 	<script type="text/template" id="weather-template">
 	<div class="weather-container">
 		<div class="pure-g">
-			<div class="pure-u-1">
-				<h1>weather template</h1>
+			<div class="pure-u-2-5">
+				<p> Welcome to Water Cooler! <%= temp %> </p>
+			</div>
+			<div class="pure-u-2-5">
+			</div>
+			<div class="pure-u-1-5">
+				<a href="www.weather.com"><img class="pure-img" src="<%= icon %>" height="100"></a>
 			</div>
 		</div>
 	</div>
 	</script>
 	<!-- END WEATHER TEMPLATE -->
 
+	<!-- RECIPE TEMPLATE -->
+	<script type="text/template" id="recipe-template">
+		<div class="pure-g">
+		<% objectRecipe.forEach(function(e){ %>
+			<div class="pure-u-1-3">
+				<a href="<%= e.url %>"><img class="pure-img" src="<%= e.image %>" height="200"></a>
+			</div>
+		<% }) %>
+		</div>
+	</script>
+	<!-- END RECIPE TEMPLATE -->
+
+	<!-- POWERBALL TEMPLATE -->
+	<script type="text/template" id="powerball-template">
+		<div class="pure-g">
+			<div class="pure-u-1-5">
+				<a href="http://nylottery.ny.gov/wps/portal/Home/Lottery/Home/Jackpot+Games/POWERBALL"><img class="pure-img" src="https://www.luckylottos.com/static/img/games/usapowerball/img/icon-ball.png" height="100"></a>
+			</div>
+		</div>
+	</script>
+	<!-- END POWERBALL TEMPLATE -->
+
+	<!-- MEGAMILLIONS TEMPLATE -->
+	<script type="text/template" id="megamillions-template">
+		<div class="pure-g">
+			<div class="pure-u-1-5">
+				<a href="http://nylottery.ny.gov/wps/portal/Home/Lottery/Home/Jackpot+Games/MEGA+MILLIONS/MegaMillions+-+How+to+Play"><img class="pure-img" src="https://www.luckylottos.com/static/img/games/megamillions/img/icon-ball.png" height="100"></a>
+			</div>
+		</div>
+	</script>
+	<!-- END MEGAMILLIONS TEMPLATE -->
+
+	<!-- INSTAGRAM TEMPLATE -->
+	<script type="text/template" id="insta-template">
+		<div class="pure-g">
+		<% objectInstagram.forEach(function(e){ %>
+			<div class="pure-u-1-3">
+				<a href="<%= e.url %>"><img class="pure-img" src="<%= e.image %>" height="200"></a>
+			</div>
+			<% }) %>
+		</div>
+	</script>
+	<!-- END INSTAGRAM TEMPLATE -->
+
+	<!-- GUARDIAN TEMPLATE -->
+	<script type="text/template" id="news-template">
+		<div class="pure-g">
+		<% objectNews.forEach(function(e){ %>
+			<div class="pure-u-1">
+				<a href="<%= e.url %>"><p> <%= e.title %> </a>
+			</div>
+			<% }) %>
+		</div>
+	</script>
+	<!-- END GUARDIAN TEMPLATE -->
 
 </body>
 </html>
